@@ -1,0 +1,18 @@
+﻿<#@ template language="C#" HostSpecific="True" #>
+<#@ output extension="cs" #>
+<#@ parameter type="System.String" name="ControllerName" #>
+<#@ parameter type="System.String" name="Namespace" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Net;
+using System.Net.Http;
+using System.Web.Http;
+
+namespace <#= Namespace #>
+{
+    //自定义模板生成的注释
+    public class <#= ControllerName #> : ApiController
+    {
+    }
+}

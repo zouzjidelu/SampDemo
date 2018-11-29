@@ -1,0 +1,196 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title></title>
+    <script src="https://cdn.bootcss.com/jquery/2.2.0/jquery.js"></script>
+    <script src="Scripts/jquery.signalR-2.2.0.js"></script>
+    <script src="https://cdn.bootcss.com/flot/0.8.3/jquery.flot.min.js"></script>
+    <!--https://blog.csdn.net/cuisuqiang/article/details/41081019-->
+    <script type="text/javascript">
+        $(function () {
+            AlPriceQuery();
+        });
+        function AlPriceQuery() {
+            var result = {
+                AvgPrice: [0, 10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
+                Date: ["11-1", "11-2", "11-3", "11-4", "11-5", "11-6", "11-7", "11-8", "11-9", "11-10"],
+            }
+            var DataArr = [];//y轴数据
+            var TickArr = [];//x轴自定义刻度数据
+            var PriceArr = [];//价格
+            for (var i = 0; i < result.Date.length; i++) {
+                DataArr.push([i + 1, result.AvgPrice[i]]);
+                TickArr.push([i + 1, result.Date[i]]);
+                PriceArr.push(result.AvgPrice[i]);
+            }
+            var MinPrice = PriceArr.sort(function (a, b) { return a - b })[0];//获取最小的铝锭价
+            if (MinPrice % 20 == 0) {
+                MinPrice = MinPrice - 20;
+            }
+            else {
+                MinPrice = MinPrice - 30;
+            }
+            //数据源
+            var DataSet = [{
+                "label": "最近 " + result.Date.length + " 日铝锭价",
+                "data": DataArr,//折线图数据
+            }];
+            //配置
+            var Options = {
+                xaxis: {
+                    ticks: TickArr,//x轴自定义刻度数据
+                },
+                yaxis: {
+                    min: MinPrice,//最小刻度
+                    tickSize: 10,//递增量
+                },
+                series: {
+                    lines: {
+                        show: true,//显示线段
+                        lineWidth: 1.5,
+                    },
+                    points: {
+                        show: true,//显示节点
+                        radius: 3,
+                    },
+                    color: "#7AC0DA",
+                },
+                grid: {
+                    hoverable: true,//鼠标移动到节点会有效果
+                    borderWidth: 1,//最外边的边框
+                    backgroundColor: { colors: ["#ffffff", "#EDF5FF"] },
+                },
+                legend: {
+                    noColumns: 0,
+                    labelBoxBorderColor: "#000000",
+                    position: "sw",
+                    backgroundOpacity: 0.1,
+                },
+                shadowSize: 0,//曲线阴影
+            };
+            //节点hover事件
+            $.fn.UseTooltip = function () {
+                var PrePoint = null, PreLabel = null;
+                $(this).bind("plothover", function (event, pos, item) {
+                    if (item) {
+                        if ((PreLabel != item.series.label) || (PrePoint != item.dataIndex)) {
+                            PrePoint = item.dataIndex;
+                            PreLabel = item.series.label;
+                            $("#tooltip").remove();
+                            $(this).css({
+                                "cursor": "pointer"
+                            })
+                            if (item.seriesIndex == 0) {
+                                ShowTooltip(
+                                    item.pageX + 100,
+                                    item.pageY - 10,
+                                    "#f7d373",
+                                    result.Date[item.dataIndex] + " 铝锭价: " + item.series.data[item.dataIndex][1]);
+                            }
+                        }
+                    }
+                    else {
+                        PrePoint = null;
+                        PreLabel = null;
+                        $(this).css({
+                            "cursor": "auto"
+                        });
+                        $("#tooltip").remove();
+                    }
+                });
+            };
+            if (PriceArr.length > 0) {
+                $.plot($("#placeholder"), DataSet, Options);
+                $("#placeholder").UseTooltip();
+            }
+        }
+        //提示框
+        function ShowTooltip(x, y, color, contents) {
+            $('<div id="tooltip">' + contents + '</div>').css({
+                position: 'absolute',
+                display: 'none',
+                top: y - 40,
+                left: x - 120,
+                border: '2px solid ' + color,
+                padding: '3px',
+                'font-size': '9px',
+                'border-radius': '5px',
+                'background-color': '#fff',
+                'font-family': 'Verdana, Arial, Helvetica, Tahoma, sans-serif',
+                opacity: 0.9
+            }).appendTo("body").fadeIn(200);
+        }
+    </script>
+    <!--<script type="text/javascript">
+        $(function () {
+
+            var sin = [], cos = [];
+            // 初始化数据
+            for (var i = 0; i < 14; i += 0.5) {
+                sin.push([i, Math.sin(i)]);
+                cos.push([i, Math.cos(i)]);
+            }
+            var plot = $.plot(
+                $("#placeholder"),
+                [{ data: sin, label: "sin函数" }, { data: cos, label: "cos函数" }], // 数据和右上角含义的提示
+                {
+                    series: {
+                        lines: { show: true }, // 点之间是否连线
+                        points: { show: true } // 是否显示点
+                    },
+                    grid: { hoverable: true, clickable: true }, // 是否可以悬浮，是否可以点击
+                    yaxis: { min: -1.2, max: 1.2 }, // Y 轴 的最大值和最小值
+                    xaxis: { min: 0, max: 15 }      // X 轴 的最大值和最小值
+                });
+            var previousPoint = null;
+            // 邦定事件
+            $("#interactive").bind("plothover", function (event, pos, item) {
+                if ($("#enableTooltip:checked").length > 0) { // 如果允许提示
+                    if (item) {
+                        if (previousPoint != item.dataIndex) {
+                            previousPoint = item.dataIndex;
+                            $("#tooltip").remove();
+                            var x = item.datapoint[0].toFixed(2),
+                                y = item.datapoint[1].toFixed(2);
+                            showTooltip(item.pageX, item.pageY,
+                                "X:" + x + " Y:" + y);
+                            //item.series.label + " of " + x + " = " + y); // 悬浮点时提示的内容
+                        }
+                    } else {
+                        $("#tooltip").remove();
+                        previousPoint = null;
+                    }
+                }
+            });
+            // 悬浮点时进行提示
+            function showTooltip(x, y, contents) {
+                $('<div id="tooltip">' + contents + '</div>').css({
+                    position: 'absolute',
+                    display: 'none',
+                    top: y + 5,
+                    left: x + 5,
+                    border: '1px solid #fdd',
+                    padding: '2px',
+                    'background-color': '#fee',
+                    opacity: 0.80
+                }).appendTo("body").fadeIn(200);
+            }
+
+
+            ////连接hub【中转站】
+            //function coonnectionHub() {
+            //    var connection = $.hubConnection();//构造链接
+            //    var hubProxy = connection.createHubProxy("MessageHub");//创建hub代理
+            //    hubProxy.On("SendMessage", function (data) {
+            //        console.log(data);
+            //    });
+            //    connection.start();
+            //}
+        })
+    </script>-->
+</head>
+<body>
+    <div id=placeholder style="height:800px;width:100%"></div>
+</body>
+</html>

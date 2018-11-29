@@ -7,7 +7,66 @@
     <script src="Scripts/jquery.signalR-2.2.0.js"></script>
     <script src="https://cdn.bootcss.com/flot/0.8.3/jquery.flot.min.js"></script>
     <!--https://blog.csdn.net/cuisuqiang/article/details/41081019-->
-    <script type="text/javascript">
+    <script type="text/javascript">        
+            var interactive, chartDatas = [], xVal = 0, totalCount = 100;
+            //连接hub【中转站】
+            function connectionHub() {
+                var connection = $.hubConnection();//构造链接
+                var hubProxy = connection.createHubProxy("MessageHub");//创建hub代理
+                hubProxy.on("SendMessage", function (data) {
+                    
+                    updateData(data);
+                });
+                connection.start();
+            }
+
+            function updateData(data) {
+                var newData = [xVal, parseFloat(data)];
+                chartDatas.push(newData);
+                if (chartDatas.length > totalCount) {
+                    chartDatas = chartDatas.slice(1);
+                    for (var i = 0; i < chartDatas.length; i++) {
+                        chartDatas[i][0]--;
+                    }
+                } else {
+                    xVal++;
+                }
+                //预先知道重新设置数据后数轴不需要改变
+                interactive.setData([chartDatas]);
+                interactive.setupGrid();//重新设置数轴的缩放比例、刻度、曲线名称等
+                interactive.draw();//快速重绘曲线
+            }
+            $(function () {
+                interactive = $.plot("#interactive", [chartDatas], {
+
+                    grid: {
+                        borderColor: "#f3f3f3",
+                        borderWidth: 5,
+                        tickColor: "#f3f3f3",
+                         hoverable: true,//鼠标移动到节点会有效果
+                       
+                    },
+                    series: {
+                        shadowSize: 0,
+                        color: "#3c8dbc"
+                    },
+                    lines: {
+                        fill: true,
+                        color: "#3c8dbc"
+                    },
+                    yaxis: {
+                        min: 0,
+                        max: 100,
+                        show: true
+                    },
+                    xaxis: {
+                        show: false
+                    }
+                })
+            })
+            connectionHub()
+    </script>
+    <!--<script type="text/javascript">
         $(function () {
             AlPriceQuery();
         });
@@ -121,7 +180,7 @@
                 opacity: 0.9
             }).appendTo("body").fadeIn(200);
         }
-    </script>
+    </script>-->
     <!--<script type="text/javascript">
         $(function () {
 
@@ -191,6 +250,6 @@
     </script>-->
 </head>
 <body>
-    <div id=placeholder style="height:800px;width:100%"></div>
+    <div id=interactive style="height:600px;width:100%"></div>
 </body>
 </html>

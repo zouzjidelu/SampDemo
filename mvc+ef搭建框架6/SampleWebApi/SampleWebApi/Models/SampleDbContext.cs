@@ -10,7 +10,8 @@ namespace SampleWebApi.Models
     {
         public SampleDbContext():base("SampleConnStr")
         {
-
+            Database.SetInitializer<SampleDbContext>(null);
+          
         }
 
         public  DbSet<Book> Books { get; set; }

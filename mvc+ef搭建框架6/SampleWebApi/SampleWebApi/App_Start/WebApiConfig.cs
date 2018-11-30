@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SampleWebApi.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http.Formatting;
@@ -14,7 +15,11 @@ namespace SampleWebApi
             //扩展媒体类型映射。在api后加参数来返回具体的数据格式
             config.Formatters.XmlFormatter.MediaTypeMappings.Add(new QueryStringMapping("format", "xml", "application/xml"));
             config.Formatters.JsonFormatter.MediaTypeMappings.Add(new QueryStringMapping("format", "json", "application/json"));
-            
+
+            //自定义异常处理
+            //config.Filters.Add(new CustomExceptionFilterAttribute());
+            //自定义消息handle
+            config.MessageHandlers.Add(new CustomMessageHandler());
 
             // Web API 配置和服务
 

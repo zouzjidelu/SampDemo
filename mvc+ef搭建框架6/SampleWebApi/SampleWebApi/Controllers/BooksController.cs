@@ -4,6 +4,7 @@ using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
+using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
@@ -37,7 +38,8 @@ namespace SampleWebApi.Controllers
         [EnableCors(origins: "http://localhost:35856", headers: "*", methods: "*")]
         public List<Book> GetFirstBook()
         {
-            return db.Books.ToList();
+            var list = db.Books;
+            return list.ToList();
         }
 
         /// <summary>
@@ -106,18 +108,29 @@ namespace SampleWebApi.Controllers
         /// <returns></returns>
 
         // POST: api/Books
+        //[ResponseType(typeof(Book))]
+        //public IHttpActionResult PostBook(Book book)
+        //{
+        //    if (!ModelState.IsValid)
+        //    {
+        //        return BadRequest(ModelState);
+        //    }
+
+        //    db.Books.Add(book);
+        //    db.SaveChanges();
+
+        //    return CreatedAtRoute("DefaultApi", new { id = book.ID }, book);
+        //}
+
         [ResponseType(typeof(Book))]
-        public IHttpActionResult PostBook(Book book)
+        public HttpResponseMessage PostBook(Book book)
         {
             if (!ModelState.IsValid)
             {
-                return BadRequest(ModelState);
+                //return  BadRequest(ModelState);
+                return Request.CreateErrorResponse(HttpStatusCode.BadRequest, ModelState);
             }
-
-            db.Books.Add(book);
-            db.SaveChanges();
-
-            return CreatedAtRoute("DefaultApi", new { id = book.ID }, book);
+            return Request.CreateResponse(HttpStatusCode.OK);
         }
 
         /// <summary>
@@ -163,6 +176,6 @@ namespace SampleWebApi.Controllers
         {
             return db.Books.Count(e => e.ID == id) > 0;
         }
-      
+
     }
 }

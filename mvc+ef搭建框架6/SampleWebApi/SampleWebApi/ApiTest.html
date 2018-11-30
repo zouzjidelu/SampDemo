@@ -12,7 +12,7 @@
     <input type="button" class="btn btn-success" onclick="getBook(2)" value="Get" />
     <input type="button" class="btn btn-success" onclick="deletes(1)" value="DELETE" />
     <input type="button" class="btn btn-success" onclick="puts(2)" value="PUT" />
-  
+
     <script type="text/javascript">
         function add() {
             $.ajax({
@@ -20,8 +20,13 @@
                 type: "POST",
                 data: { "Name": "java", "price": "33" },
                 success: function (data) {
+                    alert(data);
                     alert(JSON.stringify(data))
+                },
+                error: function (data) {
+                    alert(data);
                 }
+
             })
         }
         function getBooks() {
@@ -62,7 +67,7 @@
             })
         }
 
-     
+
 
     </script>
 </body>

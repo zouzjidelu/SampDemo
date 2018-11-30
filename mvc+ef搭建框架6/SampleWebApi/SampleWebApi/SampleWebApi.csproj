@@ -209,6 +209,8 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\TemplateTestController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
+    <Compile Include="Filters\CustomExceptionFilterAttribute.cs" />
+    <Compile Include="Filters\CustomMessageHandler.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>

@@ -1,23 +1,27 @@
-﻿using System;
+﻿using SampleWebApi.Filters;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace SampleWebApi.Controllers
 {
     public class ValuesController : ApiController
     {
-        // GET api/values
+
+        [CustomExceptionFilterAttribute]
         public IEnumerable<string> Get()
         {
+            int a = 1;
+            int b = 0;
+            int c = a / b;
             return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
         public string Get(int id)
         {
+            int a = 1;
+            int b = 0;
+            int c = a / b;
             return "value";
         }
 

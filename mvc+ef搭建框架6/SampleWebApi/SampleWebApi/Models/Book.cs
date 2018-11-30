@@ -1,4 +1,6 @@
-﻿namespace SampleWebApi.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace SampleWebApi.Models
 {
     public class Book
     {
@@ -10,6 +12,7 @@
         /// <summary>
         /// 图书名称
         /// </summary>
+        [Required]
         public string Name { get; set; }
 
         /// <summary>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PackageManifest Version="2.0.0" xmlns="http://schemas.microsoft.com/developer/vsx-schema/2011" xmlns:d="http://schemas.microsoft.com/developer/vsx-schema-design/2011">
+    <Metadata>
+        <Identity Id="SumVsix.4a59f5e0-bdbe-4205-a476-d17ab027c326" Version="1.0" Language="zh-CN" Publisher="Microsoft" />
+        <DisplayName>SumVsix</DisplayName>
+        <Description xml:space="preserve">容器打包集合、将10个自定义的容器，打包成一个容器，供用户安装使用。容器内的插件</Description>
+    </Metadata>
+    <Installation>
+        <InstallationTarget Id="Microsoft.VisualStudio.Community" Version="[15.0, 16.0)" />
+    </Installation>
+    <Dependencies>
+        <Dependency Id="Microsoft.Framework.NDP" DisplayName="Microsoft .NET Framework" d:Source="Manual" Version="[4.5,)" />
+    </Dependencies>
+    <Assets>
+        <Asset Type="Microsoft.VisualStudio.ItemTemplate" d:Source="Project" d:ProjectName="ItemTemplateSample" d:VsixSubPath="ItemTemplates" Path="ItemTemplates" d:TargetPath="|ItemTemplateSample;TemplateProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="ProjectTemplateSample" d:VsixSubPath="ProjectTemplates" Path="ProjectTemplates" d:TargetPath="|ProjectTemplateSample;TemplateProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="VSIXProjectSample" d:VsixSubPath="容器项目演示，容器内创建 命令" Path="|VSIXProjectSample;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="TopMenuLevel" d:VsixSubPath="顶级菜单展示、与vs的菜单平级" Path="|TopMenuLevel;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="IDEToolBar" d:VsixSubPath="制定自己的工具栏，在工具栏出右键展示自己的工具栏，并点击弹出信息" Path="|IDEToolBar;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="SolutionToolbar" d:VsixSubPath="解决方案资源管理器，添加自己的工具栏" Path="|SolutionToolbar;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.VsPackage" d:Source="Project" d:ProjectName="FirstWindow" d:VsixSubPath="自定义工具窗口、默认在视图--工具栏中展示自定义的工具窗口" Path="|FirstWindow;PkgdefProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="MarginExtension" d:VsixSubPath="ProjectTemplates" Path="ProjectTemplates" d:TargetPath="|MarginExtension;TemplateProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="TestAdornment" d:VsixSubPath="ProjectTemplates" Path="ProjectTemplates" d:TargetPath="|TestAdornment;TemplateProjectOutputGroup|" />
+        <Asset Type="Microsoft.VisualStudio.ProjectTemplate" d:Source="Project" d:ProjectName="TestEditorClassFiler" d:VsixSubPath="ProjectTemplates" Path="ProjectTemplates" d:TargetPath="|TestEditorClassFiler;TemplateProjectOutputGroup|" />
+    </Assets>
+    <Prerequisites>
+        <Prerequisite Id="Microsoft.VisualStudio.Component.CoreEditor" Version="[15.0,16.0)" DisplayName="Visual Studio core editor" />
+    </Prerequisites>
+</PackageManifest>

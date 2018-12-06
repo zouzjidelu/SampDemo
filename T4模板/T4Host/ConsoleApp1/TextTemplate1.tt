@@ -1,0 +1,6 @@
+﻿
+<#@template debug="false" hostspecific="false" language="C#"#>
+<#@ output extension=".txt" encoding="utf-8" #>
+<#@ parameter type="ConsoleApp1.People" name="people" #>
+
+Name:<#= people.Name #>  Age:<#= people.Age #>   Sex:<#= people.Sex #>

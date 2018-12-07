@@ -34,6 +34,7 @@ namespace CustomScaffolder
 
         public CustomCodeGeneratorFactory() : base(information)
         {
+
         }
 
         public override ICodeGenerator CreateInstance(CodeGenerationContext context)

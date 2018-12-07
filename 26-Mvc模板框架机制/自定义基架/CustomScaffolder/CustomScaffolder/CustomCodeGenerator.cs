@@ -13,6 +13,7 @@ namespace CustomScaffolder
         /// </summary>
         public override void GenerateCode()
         {
+
         }
 
         /// <summary>

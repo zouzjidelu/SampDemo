@@ -1,4 +1,9 @@
 ﻿@using StackExchange.Profiling;
+@using StackExchange.Profiling.Mvc
+@{
+    // allows us to test out starting a profiler hidden - use ALT + P to toggle display of results
+    var startHidden = !string.IsNullOrEmpty(Request.QueryString["startHidden"]);
+}
 <!DOCTYPE html>
 <html>
 <head>
@@ -8,6 +13,16 @@
     <title>@ViewBag.Title - 我的 ASP.NET 应用程序</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
+
+    @this.InitClientTimings()
+    @*@this.TimeScript("jQuery 3.1.1", @<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>)*@
+    @using (MiniProfiler.Current.Step("<head> rendering"))
+    {
+        @*<title>@ViewBag.Title - MVC MiniProfiler Demo</title>
+        @(this.TimeScript("Our CSS", @Styles.Render("~/Content/css")));
+        @Scripts.Render("~/bundles/bootstrap")*@
+        @RenderSection("head", required: false)
+    }
 
 </head>
 <body>
@@ -33,13 +48,25 @@
         </div>
     </div>
     <div class="container body-content">
-       
+
         @RenderBody()
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - 我的 ASP.NET 应用程序</p>
         </footer>
     </div>
+
+    @* renders our UI's css and javascript - best put it in the bottom so it does not effect perf *@
+    @*@if (ViewBag.Orientation != null)
+    {
+        var position = (RenderPosition)ViewBag.Orientation;
+        @MiniProfiler.Current.RenderIncludes(position: position, showTrivial: false, showTimeWithChildren: false, startHidden: startHidden)
+    }
+    else
+    {*@
+<div>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA</div>
+        @MiniProfiler.Current.RenderIncludes(position: RenderPosition.Right, showTrivial: false, showTimeWithChildren: false, startHidden: true)
+ @*   }*@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")

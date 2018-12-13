@@ -6,7 +6,7 @@ namespace UserManager.Security
     /// <summary>
     /// 角色权限提供这类
     /// </summary>
-    public class RolePermissionProvider : IPermissionProvider
+    public class PermissionProvider : IPermissionProvider
     {
         public IEnumerable<Permission> GetPermissions()
         {

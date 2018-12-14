@@ -1,4 +1,5 @@
-﻿$Connection = New-Object System.Data.SQLClient.SQLConnection
+﻿Set-ExecutionPolicy Unrestricted
+$Connection = New-Object System.Data.SQLClient.SQLConnection
 
 [System.Reflection.Assembly]::LoadFrom((get-item $PSScriptRoot ).parent.FullName+'\bin\UserManager.dll') | Out-null
 

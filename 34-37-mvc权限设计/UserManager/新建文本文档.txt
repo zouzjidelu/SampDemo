@@ -1,4 +1,6 @@
 #$env:windir
  #$env:ProgramFiles
+//查看环境变量
 # ls env:
+//查看版本，低于3.0，要升级到3.0.否则有些环境变量不能用
 $PSVersionTable

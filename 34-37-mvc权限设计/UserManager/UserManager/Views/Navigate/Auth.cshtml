@@ -1,0 +1,54 @@
+﻿@model SelectList
+@{
+    ViewBag.Title = "Auth";
+
+}
+
+@section styles{
+    <link href="//cdn.bootcss.com/iCheck/1.0.2/skins/all.css" rel="stylesheet">
+}
+
+<h2>Auth</h2>
+
+@using (Html.BeginForm())
+{
+    <input type="hidden" id="=navId" name="navId" value="@ViewBag.navId" />
+    <table class="table">
+        <tr><th>角色名称</th><th>全选</th></tr>
+        @foreach (var item in Model.Items.OfType< SelectListItem>())
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelitem => item.Text)</td>
+                <td>
+                    <input type="checkbox" name="roleIds" value="@item.Value" @(item.Selected ? Html.Raw("checked") : null) />
+                    <span style="margin-right:1em">@item.Text</span>
+                </td>
+                <td>
+                    <input type="checkbox" name="check-all" value="" class="check-all" />
+                </td>
+            </tr>
+        }
+    </table>
+    <button class="btn btn-default" type="submit">保存权限</button>
+}
+
+@section scripts{
+
+    <script src="//cdn.bootcss.com/iCheck/1.0.2/icheck.min.js"></script>
+    <script>
+        $(function () {
+            $("input").iCheck({
+                checkboxClass: 'icheckbox_minimal',
+                increaseArea: '20%'
+            })
+
+            $('input.check-all').on('ifChecked', function () {
+                $(this).parents("tr").find("input:checkbox").iCheck('check');
+            });
+
+            $('input.check-all').on('ifUnchecked', function () {
+                $(this).parents("tr").find("input:checkbox").iCheck('uncheck');
+            });
+        });
+    </script>
+}

@@ -1,0 +1,21 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>这是后台管理页面哦！</h2>
+<div>
+
+    <a class="btn btn-default" id="clickMe">查询异步</a>
+    @section scripts{
+        <script>
+        $(function () {
+            $("#clickMe").click(function () {
+                $.getJSON('@Url.Action("GetJson")', function (datas) {
+                    alert(datas.name);
+                });
+            });
+        });
+        </script>
+    }
+</div>

@@ -1,0 +1,11 @@
+﻿@model HandleErrorInfo
+@{
+    ViewBag.Title = "Error";
+}
+
+<h2>Error</h2>
+
+Controller:@Model.ControllerName
+Action:@Model.ActionName
+Exception:@Model.Exception.Message
+@string.Format("0x{0:x8}", Model.Exception.HResult)

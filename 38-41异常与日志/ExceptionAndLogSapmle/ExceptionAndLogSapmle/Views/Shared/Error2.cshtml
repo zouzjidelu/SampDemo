@@ -1,0 +1,19 @@
+﻿@model HandleErrorInfo
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>错误2</title>
+</head>
+<body>
+    <hgroup>
+        <h1>错误2。</h1>
+        <h2>处理你的请求时出错2。Error2.Html</h2>
+        @Model.ControllerName-@Model.ActionName
+        msg:@Model.Exception.Message
+        @string.Format("0x{0:x8}",Model.Exception.HResult)
+
+    </hgroup>
+</body>
+</html>

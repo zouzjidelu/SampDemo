@@ -9,7 +9,7 @@ namespace ExceptionAndLogSapmle.Controllers
 {
     public class HomeController : Controller
     {
-        [CustomHandleError]
+        //[CustomHandleError]
         public ActionResult Index()
         {
             int a = 1;

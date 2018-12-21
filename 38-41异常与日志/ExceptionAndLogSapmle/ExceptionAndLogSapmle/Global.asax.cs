@@ -21,7 +21,7 @@ namespace ExceptionAndLogSapmle
         public void Application_error(Object sender, EventArgs e)
         {
             Exception exception = Server.GetLastError();
-            int code=exception.HResult;
+            //int code=exception.HResult;
             
         }
 

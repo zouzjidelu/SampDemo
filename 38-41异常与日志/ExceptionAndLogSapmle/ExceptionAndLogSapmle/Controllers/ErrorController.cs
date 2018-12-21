@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 
 namespace ExceptionAndLogSapmle.Controllers
@@ -13,6 +10,14 @@ namespace ExceptionAndLogSapmle.Controllers
         {
             return View();
         }
+
+        public ActionResult InternalServerError(Exception msg)
+        {
+            ViewBag.msg = msg;
+            return View();
+        }
+
+
 
         public ActionResult NotFound()
         {

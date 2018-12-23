@@ -15,7 +15,7 @@ namespace ExceptionAndLogSapmle
             AreaRegistration.RegisterAllAreas();
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
+            BundleConfig.RegisterBundles(BundleTable.Bundles); 
         }
 
         public void Application_error(Object sender, EventArgs e)

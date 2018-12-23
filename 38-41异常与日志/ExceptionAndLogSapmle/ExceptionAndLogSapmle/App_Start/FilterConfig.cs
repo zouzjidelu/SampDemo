@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using ExceptionAndLogSapmle.Exceptions;
+using System.Web;
 using System.Web.Mvc;
 
 namespace ExceptionAndLogSapmle
@@ -7,7 +8,10 @@ namespace ExceptionAndLogSapmle
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new HandleErrorAttribute());
+            //filters.Add(new HandleErrorAttribute());
+            filters.Add(new ExceptionHandlingAttribute());
+            
+
         }
     }
 }

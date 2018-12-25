@@ -40,8 +40,7 @@ namespace QuarzSample
                 //.WithRepeatCount(5))//总共执行5次
 
                 //.WithCronSchedule("2,12,22,32,42,52 * * * * ? *")//表达式的方式执行任务 每分钟内的 2,12,22,32,42,52s 执行一次
-
-
+                
                 .Build();
 
             //3.调度器

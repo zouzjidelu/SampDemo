@@ -10,18 +10,18 @@ namespace SampleWebApi.Controllers
         [CustomExceptionFilterAttribute]
         public IEnumerable<string> Get()
         {
-            //int a = 1;
-            //int b = 0;
-            //int c = a / b;
+            int a = 1;
+            int b = 0;
+            int c = a / b;
             return new string[] { "value1", "value2" };
         }
 
         // GET api/values/5
         public string Get(int id)
         {
-            //int a = 1;
-            //int b = 0;
-            //int c = a / b;
+            int a = 1;
+            int b = 0;
+            int c = a / b;
             return "value";
         }
 

@@ -16,7 +16,7 @@ namespace SampleWebApi.Models
         public string Name { get; set; }
 
         /// <summary>
-        /// 图书价格22222
+        /// 图书价格
         /// </summary>
         public double Price { get; set; }
     }

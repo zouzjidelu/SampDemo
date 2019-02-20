@@ -1,0 +1,66 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swashbuckle.Core", "Swashbuckle.Core\Swashbuckle.Core.csproj", "{15E76579-E0C4-4CD4-9083-0E04F9FD531D}"
+EndProject
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "swagger-ui", "swagger-ui\", "{B667E34E-F9DA-4F87-87BC-BBAB0FCD9530}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.0"
+		Debug.AspNetCompiler.VirtualPath = "/localhost_9235"
+		Debug.AspNetCompiler.PhysicalPath = "swagger-ui\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_9235\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_9235"
+		Release.AspNetCompiler.PhysicalPath = "swagger-ui\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_9235\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "9235"
+		SlnRelativePath = "swagger-ui\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Swashbuckle.WebHost", "Swashbuckle.WebHost\Swashbuckle.WebHost.csproj", "{31AD7304-29A6-4305-8A86-97516C1CF1C8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SwashbuckleEx.WebApiTest", "SwashbuckleEx.WebApiTest\SwashbuckleEx.WebApiTest.csproj", "{42BFF3DE-68B0-4DD0-96E1-2BF29975F522}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{B0A2397D-7BD8-4C4B-B49D-8BF47EAD27DD}"
+	ProjectSection(SolutionItems) = preProject
+		Publish.bat = Publish.bat
+		Publish.SwashbuckleEx.bat = Publish.SwashbuckleEx.bat
+		README.md = README.md
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{15E76579-E0C4-4CD4-9083-0E04F9FD531D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{15E76579-E0C4-4CD4-9083-0E04F9FD531D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{15E76579-E0C4-4CD4-9083-0E04F9FD531D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{15E76579-E0C4-4CD4-9083-0E04F9FD531D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B667E34E-F9DA-4F87-87BC-BBAB0FCD9530}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B667E34E-F9DA-4F87-87BC-BBAB0FCD9530}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B667E34E-F9DA-4F87-87BC-BBAB0FCD9530}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{B667E34E-F9DA-4F87-87BC-BBAB0FCD9530}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{31AD7304-29A6-4305-8A86-97516C1CF1C8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31AD7304-29A6-4305-8A86-97516C1CF1C8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31AD7304-29A6-4305-8A86-97516C1CF1C8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31AD7304-29A6-4305-8A86-97516C1CF1C8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{42BFF3DE-68B0-4DD0-96E1-2BF29975F522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{42BFF3DE-68B0-4DD0-96E1-2BF29975F522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{42BFF3DE-68B0-4DD0-96E1-2BF29975F522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{42BFF3DE-68B0-4DD0-96E1-2BF29975F522}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

@@ -4,3 +4,8 @@
 # ls env:
 //查看版本，低于3.0，要升级到3.0.否则有些环境变量不能用
 $PSVersionTable
+
+
+
+项目---属性---生成事件---后期生成事件命令行 添加以下代码，vs编译的时候就会执行此ps1中的命令代码
+powershell –NonInteractive –ExecutionPolicy Unrestricted $(ProjectDir)App_Data\create-permissions.ps1

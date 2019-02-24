@@ -52,6 +52,9 @@ namespace UserManager.Controllers
         [AllowAnonymous]
         public ActionResult SignOut()
         {
+            Action<int> act = new Action<int>((int a)=> { });
+            IAsyncResult asyncResult= act.BeginInvoke(1, null, null);
+            act.EndInvoke(asyncResult);
             //方式一
             authenticationProvider.SignOut();
             return RedirectToAction(nameof(Login));

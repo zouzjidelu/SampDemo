@@ -65,7 +65,6 @@ namespace SwashbuckleEx.WebApiTest
                 })
                 .EnableSwaggerUi(c =>
                 {
-                   
                     c.EnableApiKeySupport("Authorization","header");
                 });
         }
